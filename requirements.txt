@@ -14,7 +14,7 @@ hiredis==2.2.3
 # Autenticación y Seguridad
 python-jose[cryptography]==3.3.0
 passlib[bcrypt]==1.7.4
-python-bcrypt==0.4.0  # Alternativa a bcrypt
+bcrypt==4.1.2 # Alternativa a bcrypt
 PyJWT==2.8.0
 
 # Validación de datos
