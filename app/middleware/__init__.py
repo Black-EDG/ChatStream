@@ -1,0 +1,3 @@
+"""
+Middleware de la aplicación
+"""

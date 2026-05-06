@@ -1,0 +1,74 @@
+version: '3.8'
+
+services:
+  # Aplicación FastAPI
+  app:
+    build: .
+    container_name: social-stream-backend
+    ports:
+      - "8000:8000"
+    environment:
+      - MONGODB_URL=mongodb://mongodb:27017
+      - MONGODB_DB_NAME=social_stream
+      - REDIS_URL=redis://redis:6379
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY:-your-super-secret-key}
+      - ENVIRONMENT=production
+    volumes:
+      - ./uploads:/app/uploads
+      - ./app:/app/app
+    depends_on:
+      - mongodb
+      - redis
+    restart: unless-stopped
+    networks:
+      - social-network
+
+  # MongoDB
+  mongodb:
+    image: mongo:7.0
+    container_name: social-mongodb
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_DATABASE=social_stream
+    volumes:
+      - mongodb_data:/data/db
+    restart: unless-stopped
+    networks:
+      - social-network
+
+  # Redis
+  redis:
+    image: redis:7.2-alpine
+    container_name: social-redis
+    ports:
+      - "6379:6379"
+    command: redis-server --appendonly yes
+    volumes:
+      - redis_data:/data
+    restart: unless-stopped
+    networks:
+      - social-network
+
+  # (Opcional) Nginx para proxy reverso
+  nginx:
+    image: nginx:alpine
+    container_name: social-nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - app
+    restart: unless-stopped
+    networks:
+      - social-network
+
+volumes:
+  mongodb_data:
+  redis_data:
+
+networks:
+  social-network:
+    driver: bridge

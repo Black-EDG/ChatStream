@@ -1,0 +1,55 @@
+# FastAPI y ASGI
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+python-multipart==0.0.6
+
+# MongoDB
+motor==3.3.2
+pymongo==4.6.0
+
+# Redis
+redis==5.0.1
+hiredis==2.2.3
+
+# Autenticación y Seguridad
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+python-bcrypt==0.4.0  # Alternativa a bcrypt
+PyJWT==2.8.0
+
+# Validación de datos
+pydantic==2.5.0
+pydantic-settings==2.1.0
+email-validator==2.1.0
+
+# Manejo de archivos
+aiofiles==23.2.1
+python-magic==0.4.27
+
+# WebSockets
+websockets==12.0
+
+# Streaming
+aiortc==1.7.0  # WebRTC
+opencv-python-headless==4.8.1.78
+
+# Utilidades
+python-dateutil==2.8.2
+pytz==2023.3
+
+# Logging y monitoreo
+loguru==0.7.2
+
+# Variables de entorno
+python-dotenv==1.0.0
+
+# CORS
+aiohttp==3.9.0
+
+# Testing
+pytest==7.4.3
+pytest-asyncio==0.21.1
+httpx==0.25.1
+
+# Producción
+gunicorn==21.2.0
