@@ -97,7 +97,12 @@ class Settings(BaseSettings):
         env_file = ".env"
         env_file_encoding = "utf-8"
         case_sensitive = True
-        extra = "allow"  # Permitir campos extra
+        extra = "allow"  
+        
+        # Permitir campos extra
+    CLOUDINARY_CLOUD_NAME: str = "dtmlegbqx"
+    CLOUDINARY_API_KEY: str = "212763324796445"
 
+    CLOUDINARY_API_SECRET: str = "W7SBWS0Num_DN0jM-cIpxVBjuxU"
 # Instancia global de configuración
 settings = Settings()
